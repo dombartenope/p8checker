@@ -59,7 +59,7 @@ func main() {
 	switch res.StatusCode {
 	case 400:
 		if res.Reason == "DeviceTokenNotForTopic" {
-			fmt.Printf("Everything matches but device token is not valid : \n%v %v %v\n", res.StatusCode, res.ApnsID, res.Reason)
+			fmt.Printf("Everything matches but device token is not valid, suggest revoking and recreating p8 from Apple Dashboard : \n%v %v %v\n", res.StatusCode, res.ApnsID, res.Reason)
 		} else if res.Reason == "TopicDisallowed" {
 			fmt.Printf("Check the Bundle ID, there might be a mismatch : \n%v %v %v\n", res.StatusCode, res.ApnsID, res.Reason)
 		} else {
@@ -92,7 +92,7 @@ func prod_req(path, key, team, bundle string) *apns2.Response {
 	}
 
 	notification := &apns2.Notification{}
-	notification.DeviceToken = "b52c07acc8a575cbee2da8De21f3a0457292a07824040c7d8b3464bb5225059ab"
+	notification.DeviceToken = "063f2054afd9ae97e84759ce3cdefd0bed432b9162612d44f1912a3602c072dd"
 	notification.Topic = bundle
 	// notification.Payload = []byte(`{"aps":{"alert":"test"}}`) // See Payload section below
 
